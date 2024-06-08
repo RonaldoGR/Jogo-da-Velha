@@ -3,6 +3,7 @@
   "description": "",
   "scripts": {
     "dev": "next dev"
+    "dev": "dev"
   },
   "keywords": [],
   "author": "",
