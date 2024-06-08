@@ -1,8 +1,8 @@
 {
+  "name": "react-jogo-da-velha",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "next dev"
     "dev": "dev"
   },
   "keywords": [],
