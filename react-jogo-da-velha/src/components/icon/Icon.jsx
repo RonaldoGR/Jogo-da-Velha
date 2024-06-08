@@ -1,10 +1,13 @@
-import Icon from "./Icon.module.css"
 
-
-function Icon (){
+function Icon ({iconName, size, link}){
   return (
-<img  src="/icons/github.svg" width="30px"/>
+<a href={link} target="_blank"><img  src={`/icons/${iconName}.svg`} width={size}/></a>
   )
+}
+
+Icon.defaultProps = {
+    size: '30px'
+    
 }
 
 export default Icon
