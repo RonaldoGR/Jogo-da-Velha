@@ -9,3 +9,7 @@
   width: 50px;
   
 }
+
+.winner {
+  border: 2px solid #00eeff;
+}
