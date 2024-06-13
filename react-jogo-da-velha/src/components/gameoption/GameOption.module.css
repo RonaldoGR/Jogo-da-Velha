@@ -10,8 +10,12 @@
   
 }
 
-.winner {
+.isWinner{
   border: 2px solid #00eeff;
+}
+
+.isWinnerX {
+  border: 2px solid rgb(243, 11, 11);
 }
 
 .draw {

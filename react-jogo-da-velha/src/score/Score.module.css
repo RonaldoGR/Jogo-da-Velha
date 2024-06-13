@@ -9,3 +9,14 @@
  flex-direction: column;
  align-items: center;
 }
+
+.scoreButton {
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.scoreButton:disabled {
+  cursor: default;
+  background-color: #61aeff;
+
+}
