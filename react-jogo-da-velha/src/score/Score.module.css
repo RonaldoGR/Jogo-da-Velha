@@ -8,6 +8,11 @@
  display: flex;
  flex-direction: column;
  align-items: center;
+
+}
+
+.scoreDraw {
+  color: rgb(241, 241, 41);
 }
 
 .scoreButton {

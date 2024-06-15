@@ -27,6 +27,10 @@ function Game () {
     const [draw,setDraw] = useState(false)
     const [winnerCircle,setWinnerCircle] = useState(0)
     const [winnerX,setWinnerX] = useState(0)
+    const [yellowDraw, setYellowDraw] = useState(0)
+    const [redWinner,setRedWinner] = useState(false)
+    const [blueWinner,setBlueWinner] = useState(false)
+    
 
 
 
@@ -34,7 +38,6 @@ function Game () {
       if (gameState[pos] === 0 && winner === 0){
       let newGameState = [...gameState]
       newGameState [pos] = currentPlayer
-      
       setGameState(newGameState)
       }
     } 
@@ -47,8 +50,13 @@ function Game () {
         if (sum === 3 || sum === -3) {
           setWinner(sum/3)
           setWinnerLine(line)
-          sum === 3 && setWinnerCircle(winnerCircle + 1)
-          sum === -3 && setWinnerX(winnerX + 1)
+          if(sum === 3){
+            setWinnerCircle(winnerCircle + 1) 
+            setBlueWinner(true)
+          }else if (sum === -3){
+            setWinnerX(winnerX + 1)
+            setRedWinner(true)
+          }
         } 
       }) 
     }
@@ -58,22 +66,27 @@ function Game () {
       setWinner(0)
       setWinnerLine([])
       setDraw(false)
+      setBlueWinner(false)
+      setRedWinner(false)
     }
+
     const resetScore = () => {
       setWinnerCircle(0)
       setWinnerX(0)
+      setYellowDraw(0)
     }
 
     const verifyDraw = () => {
       if (gameState.find((value)=> value === 0 ) === undefined && winner === 0){
         setDraw(true)
+        setYellowDraw(yellowDraw + 1)
       }
     }
 
-    const verifyWinnerLine = (pos) =>  winnerLine.find((value) => value === pos) !== undefined 
-      
-      
 
+    const verifyWinnerLine = (pos) =>  winnerLine.find((value) => value === pos) !== undefined 
+    
+   
     useEffect(() => {
       setCurrentPlayer(currentPlayer * -1)
       verifyGame()
@@ -84,36 +97,41 @@ function Game () {
     if (winner !== 0) setDraw(false)
    }, [winner]) 
 
+
+
   return (
    <> 
       <div className={styles.gameContent}>
         <div className={styles.game}>
         {
           gameState.map((value,pos) => 
-          <GameOption
-          key={`game-option-pos${pos}`}
-          status = {value}
-          onClick={() => handleClick(pos)}
-          isWinner = {verifyWinnerLine(pos)}
-          isDraw = {draw}
+            <GameOption
+              key={`game-option-pos${pos}`}
+              status = {value}
+              onClick={() => handleClick(pos)}
+              isWinner = {verifyWinnerLine(pos)}
+              winnerX={redWinner}
+              winnerCircle = {blueWinner}
+              isDraw = {draw}
           />
           )
         }
   
       </div>
       <GameInfo 
-      currentPlayer = {currentPlayer}
-      winner = {winner}
-      onReset = {handleReset}
-      isDraw = {draw}
+        currentPlayer = {currentPlayer}
+        winner = {winner}
+        onReset = {handleReset}
+        isDraw = {draw}
       />
       
     </div>
     <Score
-    className = {styles.score}
-    winnerCircle = {winnerCircle}
-    winnerX = {winnerX}
-    resetScore = {resetScore}
+      className = {styles.score}
+      winnerCircle = {winnerCircle}
+      winnerX = {winnerX}
+      yellowDraw = {yellowDraw}
+      resetScore = {resetScore}
      />
   </>  
   )

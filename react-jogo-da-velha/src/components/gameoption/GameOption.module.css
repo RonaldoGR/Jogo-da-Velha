@@ -10,11 +10,11 @@
   
 }
 
-.isWinner{
+.winnerBlue{
   border: 2px solid #00eeff;
 }
 
-.isWinnerX {
+.winnerRed {
   border: 2px solid rgb(243, 11, 11);
 }
 
